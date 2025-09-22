@@ -8,6 +8,7 @@
 import Foundation
 
 final class DashboardPresenter: DashboardPresenterInput {
+
     private(set) weak var view: DashboardViewInput?
     private(set) var interactor: DashboardInteractorInput
     private(set) var router: DashboardRouterInput
@@ -44,6 +45,18 @@ extension DashboardPresenter {
 
     func didPullToRefresh() {
         interactor.fetchAuthenticatedUser()
+    }
+    
+    func didTapSearchButton() {
+        print("Kayıt Sorgulama butonu tıklandı.")
+        // Router'a kullanıcı arama sayfasına gitmesi için talimat ver.
+        router.navigateToSearch()
+    }
+    
+    func didTapFavoritesButton() {
+        print("Favorilerim butonu tıklandı.")
+        // Router'a favoriler sayfasına gitmesi için talimat ver.
+        router.navigateToFavorites()
     }
     
     func settingsButtonTapped() {
@@ -97,6 +110,7 @@ private extension DashboardPresenter {
                     color: .systemPink
                 ) {
                     print("Kayıt Sorgulama tıklandı")
+                    self.didTapSearchButton()
                 },
                 .init(
                     title: "Favorilediklerim",
@@ -104,6 +118,7 @@ private extension DashboardPresenter {
                     color: .systemPurple
                 ) {
                     print("Favorilediklerim tıklandı")
+                    self.didTapFavoritesButton()
                 },
                 .init(
                     title: "Görüntülediklerim",
@@ -140,5 +155,11 @@ private extension DashboardPresenter {
         )
         let allItems = Array<GalleryItemPresentationModel>(repeating: placeholderItem, count: placeholderItemCount)
         return GalleryPresentationModel(items: allItems)
+    }
+}
+
+extension DashboardPresenter{
+    func didTapLogoutButton() {
+        router.logout()
     }
 }

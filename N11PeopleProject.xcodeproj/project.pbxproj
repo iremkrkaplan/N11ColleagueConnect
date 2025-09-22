@@ -7,6 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		644ECC252E70B76800AE4A74 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC232E70B76800AE4A74 /* EmptyStateView.swift */; };
+		644ECC262E70B76800AE4A74 /* EmptyStatePresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC222E70B76800AE4A74 /* EmptyStatePresentationModel.swift */; };
+		644ECC2D2E70B76F00AE4A74 /* UserFavoritesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC272E70B76F00AE4A74 /* UserFavoritesRouter.swift */; };
+		644ECC2E2E70B76F00AE4A74 /* UserFavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC282E70B76F00AE4A74 /* UserFavoritesViewController.swift */; };
+		644ECC2F2E70B76F00AE4A74 /* UserFavoritesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC292E70B76F00AE4A74 /* UserFavoritesPresenter.swift */; };
+		644ECC302E70B76F00AE4A74 /* UserFavoritesContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC2B2E70B76F00AE4A74 /* UserFavoritesContracts.swift */; };
+		644ECC312E70B76F00AE4A74 /* UserFavoritesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC2A2E70B76F00AE4A74 /* UserFavoritesInteractor.swift */; };
+		644ECC332E7149B100AE4A74 /* GitHubTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC322E7149B100AE4A74 /* GitHubTokenResponse.swift */; };
+		644ECC362E714A3500AE4A74 /* LoginContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC352E714A3500AE4A74 /* LoginContracts.swift */; };
+		644ECC382E714A5500AE4A74 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC372E714A5500AE4A74 /* LoginInteractor.swift */; };
+		644ECC3A2E714A6B00AE4A74 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC392E714A6B00AE4A74 /* LoginPresenter.swift */; };
+		644ECC3C2E714A8300AE4A74 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC3B2E714A8300AE4A74 /* LoginViewController.swift */; };
+		644ECC3E2E714AFF00AE4A74 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC3D2E714AFF00AE4A74 /* LoginRouter.swift */; };
+		644ECC412E715B8E00AE4A74 /* KeychainSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 644ECC402E715B8E00AE4A74 /* KeychainSwift */; };
+		644ECC452E7168C500AE4A74 /* LoginPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC442E7168C500AE4A74 /* LoginPresentationModel.swift */; };
+		644ECC4E2E72AAD800AE4A74 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 644ECC4D2E72AAD800AE4A74 /* WelcomeViewController.swift */; };
 		6458CDE32E4626AF001ACBC6 /* UIVIew+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458CDE22E4626AF001ACBC6 /* UIVIew+Layout.swift */; };
 		6458CDEE2E467D52001ACBC6 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458CDED2E467D52001ACBC6 /* BaseViewController.swift */; };
 		6458CDF02E467D75001ACBC6 /* BaseScrollViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6458CDEF2E467D75001ACBC6 /* BaseScrollViewController.swift */; };
@@ -54,9 +70,25 @@
 		64DF307B2E68862E00A5CF24 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF307A2E68862E00A5CF24 /* UserDetailViewController.swift */; };
 		64DF307D2E695E4300A5CF24 /* UserDetailPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF307C2E695E4300A5CF24 /* UserDetailPresentationModel.swift */; };
 		64DF30832E69CE0800A5CF24 /* UserDetailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64DF30822E69CE0800A5CF24 /* UserDetailRouter.swift */; };
+		64F418442E72CFAE004ACFBD /* WelcomePagePresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F418432E72CFAE004ACFBD /* WelcomePagePresentationModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		644ECC222E70B76800AE4A74 /* EmptyStatePresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStatePresentationModel.swift; sourceTree = "<group>"; };
+		644ECC232E70B76800AE4A74 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		644ECC272E70B76F00AE4A74 /* UserFavoritesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesRouter.swift; sourceTree = "<group>"; };
+		644ECC282E70B76F00AE4A74 /* UserFavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesViewController.swift; sourceTree = "<group>"; };
+		644ECC292E70B76F00AE4A74 /* UserFavoritesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesPresenter.swift; sourceTree = "<group>"; };
+		644ECC2A2E70B76F00AE4A74 /* UserFavoritesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesInteractor.swift; sourceTree = "<group>"; };
+		644ECC2B2E70B76F00AE4A74 /* UserFavoritesContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoritesContracts.swift; sourceTree = "<group>"; };
+		644ECC322E7149B100AE4A74 /* GitHubTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHubTokenResponse.swift; sourceTree = "<group>"; };
+		644ECC352E714A3500AE4A74 /* LoginContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginContracts.swift; sourceTree = "<group>"; };
+		644ECC372E714A5500AE4A74 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
+		644ECC392E714A6B00AE4A74 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		644ECC3B2E714A8300AE4A74 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		644ECC3D2E714AFF00AE4A74 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		644ECC442E7168C500AE4A74 /* LoginPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresentationModel.swift; sourceTree = "<group>"; };
+		644ECC4D2E72AAD800AE4A74 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		6458CDE22E4626AF001ACBC6 /* UIVIew+Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIVIew+Layout.swift"; sourceTree = "<group>"; };
 		6458CDED2E467D52001ACBC6 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6458CDEF2E467D75001ACBC6 /* BaseScrollViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseScrollViewController.swift; sourceTree = "<group>"; };
@@ -104,6 +136,7 @@
 		64DF307C2E695E4300A5CF24 /* UserDetailPresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPresentationModel.swift; sourceTree = "<group>"; };
 		64DF30822E69CE0800A5CF24 /* UserDetailRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRouter.swift; sourceTree = "<group>"; };
 		64EE7C442E45D294009AFFE4 /* N11PeopleProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = N11PeopleProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64F418432E72CFAE004ACFBD /* WelcomePagePresentationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePagePresentationModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -132,6 +165,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				644ECC412E715B8E00AE4A74 /* KeychainSwift in Frameworks */,
 				6458CE392E4F60F9001ACBC6 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -139,6 +173,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		644ECC242E70B76800AE4A74 /* EmptyStateView */ = {
+			isa = PBXGroup;
+			children = (
+				644ECC222E70B76800AE4A74 /* EmptyStatePresentationModel.swift */,
+				644ECC232E70B76800AE4A74 /* EmptyStateView.swift */,
+			);
+			path = EmptyStateView;
+			sourceTree = "<group>";
+		};
+		644ECC2C2E70B76F00AE4A74 /* UserFavorites */ = {
+			isa = PBXGroup;
+			children = (
+				644ECC272E70B76F00AE4A74 /* UserFavoritesRouter.swift */,
+				644ECC282E70B76F00AE4A74 /* UserFavoritesViewController.swift */,
+				644ECC292E70B76F00AE4A74 /* UserFavoritesPresenter.swift */,
+				644ECC2A2E70B76F00AE4A74 /* UserFavoritesInteractor.swift */,
+				644ECC2B2E70B76F00AE4A74 /* UserFavoritesContracts.swift */,
+			);
+			path = UserFavorites;
+			sourceTree = "<group>";
+		};
+		644ECC342E714A2000AE4A74 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				644ECC3B2E714A8300AE4A74 /* LoginViewController.swift */,
+				644ECC352E714A3500AE4A74 /* LoginContracts.swift */,
+				644ECC372E714A5500AE4A74 /* LoginInteractor.swift */,
+				644ECC392E714A6B00AE4A74 /* LoginPresenter.swift */,
+				644ECC3D2E714AFF00AE4A74 /* LoginRouter.swift */,
+				644ECC442E7168C500AE4A74 /* LoginPresentationModel.swift */,
+				644ECC4D2E72AAD800AE4A74 /* WelcomeViewController.swift */,
+				64F418432E72CFAE004ACFBD /* WelcomePagePresentationModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		6458CDE12E462696001ACBC6 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +248,7 @@
 				6458CE122E4CA066001ACBC6 /* QuickActionButtonView */,
 				6458CE0F2E4CA026001ACBC6 /* ProfileView */,
 				6458CE0E2E4C831D001ACBC6 /* AvatarView */,
+				644ECC242E70B76800AE4A74 /* EmptyStateView */,
 			);
 			path = UIComponents;
 			sourceTree = "<group>";
@@ -252,6 +323,7 @@
 				6458CE912E56F06B001ACBC6 /* User.swift */,
 				6458CE932E56F0AB001ACBC6 /* UserSearchResponse.swift */,
 				64DF30722E68659C00A5CF24 /* UserDetail.swift */,
+				644ECC322E7149B100AE4A74 /* GitHubTokenResponse.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -339,9 +411,11 @@
 		64EE7C5C2E45DD34009AFFE4 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				644ECC342E714A2000AE4A74 /* Login */,
+				64EE7C5D2E45DD75009AFFE4 /* Dashboard */,
 				64DF30712E68648200A5CF24 /* UserDetail */,
 				64DF303C2E604DD800A5CF24 /* UserList */,
-				64EE7C5D2E45DD75009AFFE4 /* Dashboard */,
+				644ECC2C2E70B76F00AE4A74 /* UserFavorites */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -382,6 +456,7 @@
 			name = N11PeopleProject;
 			packageProductDependencies = (
 				6458CE382E4F60F9001ACBC6 /* Kingfisher */,
+				644ECC402E715B8E00AE4A74 /* KeychainSwift */,
 			);
 			productName = N11PeopleProject;
 			productReference = 64EE7C442E45D294009AFFE4 /* N11PeopleProject.app */;
@@ -413,6 +488,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6458CE372E4F60F9001ACBC6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				644ECC3F2E715B8E00AE4A74 /* XCRemoteSwiftPackageReference "keychain-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 64EE7C452E45D294009AFFE4 /* Products */;
@@ -444,31 +520,44 @@
 				64DF303B2E602F0A00A5CF24 /* DashboardBuilder.swift in Sources */,
 				64DF30682E64CD0800A5CF24 /* FavoriteStorageService.swift in Sources */,
 				64DF304D2E6097B600A5CF24 /* UserListPresenter.swift in Sources */,
+				644ECC332E7149B100AE4A74 /* GitHubTokenResponse.swift in Sources */,
 				64DF30402E607AAD00A5CF24 /* UserListInteractor.swift in Sources */,
 				64DF30752E68667B00A5CF24 /* UserDetailContracts.swift in Sources */,
 				6458CE922E56F06B001ACBC6 /* User.swift in Sources */,
 				6458CE242E4DFD3E001ACBC6 /* DashboardPresentationModel.swift in Sources */,
 				6458CDF72E49DD6E001ACBC6 /* ProfileView.swift in Sources */,
+				644ECC4E2E72AAD800AE4A74 /* WelcomeViewController.swift in Sources */,
 				6458CDE32E4626AF001ACBC6 /* UIVIew+Layout.swift in Sources */,
 				6458CE0D2E4C82C7001ACBC6 /* AvatarPresentationModel.swift in Sources */,
 				64DF307B2E68862E00A5CF24 /* UserDetailViewController.swift in Sources */,
 				64DF306A2E64D46200A5CF24 /* UserListRouter.swift in Sources */,
+				644ECC2D2E70B76F00AE4A74 /* UserFavoritesRouter.swift in Sources */,
+				644ECC2E2E70B76F00AE4A74 /* UserFavoritesViewController.swift in Sources */,
+				644ECC2F2E70B76F00AE4A74 /* UserFavoritesPresenter.swift in Sources */,
+				644ECC302E70B76F00AE4A74 /* UserFavoritesContracts.swift in Sources */,
+				644ECC312E70B76F00AE4A74 /* UserFavoritesInteractor.swift in Sources */,
+				644ECC3A2E714A6B00AE4A74 /* LoginPresenter.swift in Sources */,
 				6458CE342E4F0FD8001ACBC6 /* DashboardContracts.swift in Sources */,
 				64DF30832E69CE0800A5CF24 /* UserDetailRouter.swift in Sources */,
+				644ECC382E714A5500AE4A74 /* LoginInteractor.swift in Sources */,
 				6458CE5C2E527839001ACBC6 /* APIClient.swift in Sources */,
+				644ECC3C2E714A8300AE4A74 /* LoginViewController.swift in Sources */,
 				6458CE6E2E530ED7001ACBC6 /* NetworkingModels.swift in Sources */,
 				6458CE682E530867001ACBC6 /* AppRouter.swift in Sources */,
 				64DF30772E686D0A00A5CF24 /* UserDetailInteractor.swift in Sources */,
 				6458CE112E4CA03C001ACBC6 /* ProfilePresentationModel.swift in Sources */,
+				644ECC362E714A3500AE4A74 /* LoginContracts.swift in Sources */,
 				648CCD922E5C7959000496DF /* DashboardPresenter.swift in Sources */,
 				6493A35C2E5F19EF00838779 /* DashboardRouter.swift in Sources */,
 				6458CE182E4CB38E001ACBC6 /* GalleryItemPresentationModel.swift in Sources */,
 				6458CDF02E467D75001ACBC6 /* BaseScrollViewController.swift in Sources */,
 				6458CDF32E48E7A2001ACBC6 /* AvatarView.swift in Sources */,
 				6458CE322E4F0FB0001ACBC6 /* DashboardInteractor.swift in Sources */,
+				64F418442E72CFAE004ACFBD /* WelcomePagePresentationModel.swift in Sources */,
 				6458CE072E4B3E5C001ACBC6 /* QuickActionButton.swift in Sources */,
 				64BFAE222E5730B9005B9713 /* ErrorPresentationModel.swift in Sources */,
 				64DF30792E686F3500A5CF24 /* UserDetailPresenter.swift in Sources */,
+				644ECC3E2E714AFF00AE4A74 /* LoginRouter.swift in Sources */,
 				6458CE092E4B7689001ACBC6 /* DashboardViewController.swift in Sources */,
 				64DF307D2E695E4300A5CF24 /* UserDetailPresentationModel.swift in Sources */,
 				6458CE602E5278E8001ACBC6 /* APIClientLive.swift in Sources */,
@@ -478,8 +567,11 @@
 				6458CE362E4F1043001ACBC6 /* DashboardMockInteractor.swift in Sources */,
 				6458CDFB2E49E2F1001ACBC6 /* GalleryView.swift in Sources */,
 				64DF30652E64C4E500A5CF24 /* UserListViewController.swift in Sources */,
+				644ECC252E70B76800AE4A74 /* EmptyStateView.swift in Sources */,
+				644ECC262E70B76800AE4A74 /* EmptyStatePresentationModel.swift in Sources */,
 				6458CDEE2E467D52001ACBC6 /* BaseViewController.swift in Sources */,
 				64AADB5B2E58517C00101001 /* ErrorView.swift in Sources */,
+				644ECC452E7168C500AE4A74 /* LoginPresentationModel.swift in Sources */,
 				6458CE142E4CA084001ACBC6 /* QuickActionButtonPresentationModel.swift in Sources */,
 				64DF303E2E60734C00A5CF24 /* UserListContracts.swift in Sources */,
 				6458CE662E530857001ACBC6 /* AppLoader.swift in Sources */,
@@ -708,6 +800,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		644ECC3F2E715B8E00AE4A74 /* XCRemoteSwiftPackageReference "keychain-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/evgenyneu/keychain-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 24.0.0;
+			};
+		};
 		6458CE372E4F60F9001ACBC6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -719,6 +819,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		644ECC402E715B8E00AE4A74 /* KeychainSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 644ECC3F2E715B8E00AE4A74 /* XCRemoteSwiftPackageReference "keychain-swift" */;
+			productName = KeychainSwift;
+		};
 		6458CE382E4F60F9001ACBC6 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 6458CE372E4F60F9001ACBC6 /* XCRemoteSwiftPackageReference "Kingfisher" */;

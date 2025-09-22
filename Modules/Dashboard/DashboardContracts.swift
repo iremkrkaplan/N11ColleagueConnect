@@ -8,7 +8,6 @@ import UIKit
 // MARK: - View Protocol
 protocol DashboardViewInput: AnyObject {
     var presenter: DashboardViewOutput? { get set }
-    
     func displayLoading()
     func bind(viewData: DashboardViewData)
     func displayError(_ errorModel: ErrorPresentationModel)
@@ -19,6 +18,9 @@ protocol DashboardViewOutput: AnyObject {
     func didPullToRefresh()
     func settingsButtonTapped()
     func retryButtonTapped()
+    func didTapLogoutButton()
+    func didTapSearchButton()
+    func didTapFavoritesButton()
 }
 
 // MARK: - Presenter Protocol
@@ -27,6 +29,7 @@ protocol DashboardPresenterInput: DashboardViewOutput, DashboardInteractorOutput
     var view: DashboardViewInput? { get }
     var interactor: DashboardInteractorInput { get }
     var router: DashboardRouterInput { get }
+    
 }
 
 // MARK: - Interactor Protocol
@@ -43,5 +46,11 @@ protocol DashboardInteractorOutput: AnyObject {
 // MARK: - Router
 protocol DashboardRouterInput: AnyObject {
     var viewController: UIViewController? { get set }
+    func logout()
+    func navigateToSearch()
+    func navigateToFavorites()
 }
 
+protocol DashboardRouterDelegate: AnyObject {
+    func logout()
+}

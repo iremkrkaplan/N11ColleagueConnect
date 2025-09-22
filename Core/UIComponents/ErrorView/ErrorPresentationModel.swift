@@ -26,5 +26,3 @@ struct ErrorPresentationModel {
 struct RetryActionPresentationModel {
     let buttonTitle: String
 }
-
-

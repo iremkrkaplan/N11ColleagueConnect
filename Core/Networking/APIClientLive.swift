@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import KeychainSwift
 
 struct GetAuthenticatedUserEndpoint: Endpoint {
     
@@ -78,6 +79,38 @@ extension Endpoint where Self == GetFollowingEndpoint {
     static func getFollowing(params: GetFollowingParams) -> Self { .init(params: params) }
 }
 
+
+struct GetAccessTokenEndpoint: Endpoint {
+    private let params: GitHubOAuthParams
+    private let authURL = URL(string: "https://github.com/login/oauth/access_token")!
+
+    init(params: GitHubOAuthParams) { self.params = params }
+
+    func urlRequest() -> URLRequest {
+        var request = URLRequest(url: authURL)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+
+        let bodyParams = [
+            "client_id": params.clientID,
+            "client_secret": params.clientSecret,
+            "code": params.code,
+            "redirect_uri": params.redirectURI,
+            "state": params.state
+        ].compactMapValues { $0 }
+        .map { "\($0.key)=\($0.value)" }
+        .joined(separator: "&")
+
+        request.httpBody = bodyParams.data(using: .utf8)
+        return request
+    }
+}
+
+extension Endpoint where Self == GetAccessTokenEndpoint {
+    static func getAccessToken(params: GitHubOAuthParams) -> Self { .init(params: params) }
+}
+
 extension APIClient {
     public static let live: Self = {
         var client = Self.noop
@@ -87,7 +120,12 @@ extension APIClient {
         client.getUserDetail = { try await request(.getUserDetail(params: $0)) }
         client.getFollowers = { try await request(.getFollowers(params: $0)) }
         client.getFollowing = { try await request(.getFollowing(params: $0)) }
-        
+        client.getAccessToken = { params in
+            let response: GitHubAccessTokenResponse = try await request(.getAccessToken(params: params))
+            let keychain = KeychainSwift()
+            keychain.set(response.accessToken, forKey: "github_access_token")
+            return response
+        }
         return client
     }()
 }
@@ -105,6 +143,12 @@ private extension APIClient {
     }
     
     static var githubToken: String {
+        let keychain = KeychainSwift()
+        
+        if let oauthToken = keychain.get("github_access_token") {
+            return oauthToken
+        }
+        
         guard let token = Bundle.main.infoDictionary?["API_TOKEN"] as? String,
               !token.isEmpty else {
             fatalError("API_TOKEN not found in Info.plist. Please check your xcconfig setup.")
@@ -116,15 +160,20 @@ private extension APIClient {
         var request = endpoint.urlRequest()
         
         request.addValue("application/vnd.github.v3+json", forHTTPHeaderField: "Accept")
-        request.addValue("Bearer \(githubToken)", forHTTPHeaderField: "Authorization")
-        
+        if !(endpoint is GetAccessTokenEndpoint) {
+            request.addValue("Bearer \(githubToken)", forHTTPHeaderField: "Authorization")
+        }
+//        request.addValue("Bearer \(githubToken)", forHTTPHeaderField: "Authorization")
         let (data, response) = try await URLSession.shared.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse, (200...299).contains(httpResponse.statusCode) else {
             throw URLError(.badServerResponse)
-            
         }
-        return try githubDateDecoder.decode(T.self, from: data)
         
+        if T.self == GitHubAccessTokenResponse.self {
+            return try JSONDecoder().decode(T.self, from: data)
+        }
+        
+        return try githubDateDecoder.decode(T.self, from: data)
     }
 }

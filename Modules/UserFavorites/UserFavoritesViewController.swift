@@ -1,22 +1,24 @@
 //
-//  UserListViewController.swift
+//  UserFavoritesViewController.swift
 //  N11PeopleProject
 //
-//  Created by irem.karakaplan on 31.08.2025.
+//  Created by irem karakaplan on 7.09.2025.
 //
 
 import UIKit
 
-final class UserListViewController: BaseViewController, UserListViewInput {
+final class UserFavoritesViewController: BaseScrollViewController, UserFavoritesViewInput, ErrorViewDelegate {
     
-    var output: UserListViewOutput?
+    var output: UserFavoritesViewOutput?
     
     private var collectionView: UICollectionView!
     private let searchController = UISearchController(searchResultsController: nil)
     private var dataSource: UICollectionViewDiffableDataSource<Int, UserListCellModel>!
-    private let layout: Layout = .init()
     private var emptyStateView: EmptyStateView = .build()
     private lazy var errorView: ErrorView = .build()
+    private let refreshControl = UIRefreshControl()
+    private let layout: Layout = .init()
+    
     private lazy var activityIndicator: UIActivityIndicatorView = .build {
         $0.style = .large
         $0.color = .systemPurple
@@ -24,7 +26,13 @@ final class UserListViewController: BaseViewController, UserListViewInput {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRefreshControl()
         output?.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        output?.viewWillAppear()
     }
     
     override func addUI() {
@@ -33,38 +41,14 @@ final class UserListViewController: BaseViewController, UserListViewInput {
         addCollectionView()
         addDataSource()
         addStateViews()
-        addActivityIndicator()
-    }
-    
-    func displayInitialState(with data: UserListViewData) {
-        title = data.title
-        searchController.searchBar.placeholder = data.searchPlaceholder
-    }
-    
-    func displayEmptyState(_ model: EmptyStatePresentationModel) {
-        collectionView.isHidden = true
-        
-        activityIndicator.stopAnimating()
-        
-        emptyStateView.isHidden = false
-        emptyStateView.bind(model)
-    }
-    
-    func displayLoading(_ isLoading: Bool) {
-        if isLoading {
-            activityIndicator.startAnimating()
-            collectionView.isHidden = true
-            emptyStateView.isHidden = true
-        } else {
-            activityIndicator.stopAnimating()
-            collectionView.isHidden = false
-        }
     }
     
     func bind(results: [UserListCellModel]) {
         errorView.isHidden = true
         activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
         emptyStateView.isHidden = true
+        scrollView.isHidden = false
         
         var snapshot = NSDiffableDataSourceSnapshot<Int, UserListCellModel>()
         snapshot.appendSections([0])
@@ -72,20 +56,64 @@ final class UserListViewController: BaseViewController, UserListViewInput {
         dataSource?.apply(snapshot, animatingDifferences: true)
     }
     
-    func displayError(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tamam", style: .default))
-        present(alert, animated: true)
-        //        TODO: errorView.bind(ErrorPresentationModel(title: title, message: message))
+    func displayEmptyState(_ model: EmptyStatePresentationModel) {
+        scrollView.isHidden = true
+        errorView.isHidden = true
+        
+        activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
+        
+        emptyStateView.isHidden = false
+        emptyStateView.bind(model)
+    }
+    
+    func displayLoading() {
+        scrollView.isHidden = true
+        errorView.isHidden = true
+        emptyStateView.isHidden = true
+        
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
+    
+    func displayError(_ model: ErrorPresentationModel) {
+        scrollView.isHidden = true
+        emptyStateView.isHidden = true
+        errorView.isHidden = false
+        
+        activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
+        
+        errorView.bind(model)
+    }
+    
+    func hideAllContent() {
+        scrollView.isHidden = true
+        errorView.isHidden = true
+        emptyStateView.isHidden = true
+        activityIndicator.stopAnimating()
+        scrollView.refreshControl?.endRefreshing()
+    }
+    
+    func errorViewDidTapRetryButton(_ errorView: ErrorView) {
+        print("Delegate metodu ViewController'da tetiklendi. Presenter çağrılıyor.")
+        output?.retryButtonTapped()
     }
 }
 
-private extension UserListViewController {
+private extension UserFavoritesViewController {
     func addStateViews() {
+        errorView.delegate = self
+        view.addSubview(errorView)
         view.addSubview(activityIndicator)
         view.addSubview(emptyStateView)
         
         NSLayoutConstraint.activate([
+            errorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            errorView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            errorView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            errorView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             
@@ -95,13 +123,13 @@ private extension UserListViewController {
             emptyStateView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
         
+        errorView.isHidden = true
         activityIndicator.isHidden = true
         emptyStateView.isHidden = true
     }
 }
 
-private extension UserListViewController {
-    
+private extension UserFavoritesViewController {
     func addSearchController() {
         searchController.searchBar.delegate = self
         navigationItem.searchController = searchController
@@ -113,6 +141,7 @@ private extension UserListViewController {
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         collectionView.backgroundColor = .clear
         collectionView.delegate = self
+        collectionView.refreshControl = refreshControl
         
         view.addSubview(collectionView)
         collectionView.register(UserCell.self, forCellWithReuseIdentifier: layout.cellIdentifier)
@@ -132,14 +161,6 @@ private extension UserListViewController {
             }
             return cell
         }
-    }
-    
-    func addActivityIndicator() {
-        view.addSubview(activityIndicator)
-        NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -163,11 +184,25 @@ private extension UserListViewController {
     }
 }
 
-extension UserListViewController: UICollectionViewDelegate, UISearchBarDelegate {
+extension UserFavoritesViewController: UICollectionViewDelegate, UISearchBarDelegate {
+    
+    private func setupRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(didPullToRefresh), for: .valueChanged)
+    }
+    
+    @objc private func didPullToRefresh() {
+        output?.didPullToRefresh()
+    }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let query = searchBar.text ?? ""
         output?.searchButtonTapped(with: query)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        output?.searchButtonTapped(with: "")
         searchBar.resignFirstResponder()
     }
     
@@ -177,7 +212,7 @@ extension UserListViewController: UICollectionViewDelegate, UISearchBarDelegate 
     }
 }
 
-private extension UserListViewController {
+private extension UserFavoritesViewController {
     private struct Layout {
         let contentInsets: NSDirectionalEdgeInsets = .init(
             top: 16,
@@ -195,4 +230,3 @@ private extension UserListViewController {
         let cellIdentifier: String = "UserCell"
     }
 }
-

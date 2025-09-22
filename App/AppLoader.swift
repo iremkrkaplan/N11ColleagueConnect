@@ -8,13 +8,12 @@
 import UIKit
 
 public final class AppLoader {
-    private let router = AppRouter()
+    private let router: AppRouter
     
-    public init() {}
-    
-    public func load(in window: UIWindow) {
-        let rootViewController = MainTabBarController()
-        window.rootViewController = rootViewController
-        window.makeKeyAndVisible()
+    public init(window: UIWindow) {
+        self.router = AppRouter(window: window)
+    }
+    public func load() {
+        router.start()
     }
 }

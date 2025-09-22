@@ -13,13 +13,15 @@ struct APIClient {
     var getUserDetail: (GetUserDetailParams) async throws -> UserDetail
     var getFollowers: (GetFollowersParams) async throws -> [User]
     var getFollowing: (GetFollowingParams) async throws -> [User]
+    var getAccessToken: (GitHubOAuthParams) async throws -> GitHubAccessTokenResponse
     
     static let noop = Self(
         searchUsers: { _ in try await Task.never() },
         getAuthenticatedUser: { try await Task.never() },
         getUserDetail: { _ in try await Task.never() },
         getFollowers: { _ in try await Task.never() },
-        getFollowing: { _ in try await Task.never() }
+        getFollowing: { _ in try await Task.never() },
+        getAccessToken: { _ in try await Task.never() }
     )
 }
 

@@ -4,6 +4,24 @@
 <dict>
 	<key>API_TOKEN</key>
 	<string>$(API_TOKEN)</string>
+    
+    <key>GITHUB_CLIENT_ID</key>
+    <string>$(GITHUB_CLIENT_ID)</string>
+    <key>GITHUB_CLIENT_SECRET</key>
+    <string>$(GITHUB_CLIENT_SECRET)</string>
+    
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>GitHub OAuth</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>n11peopleproject</string>
+            </array>
+        </dict>
+    </array>
+    
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

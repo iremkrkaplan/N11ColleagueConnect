@@ -13,6 +13,7 @@ protocol UserListViewInput: AnyObject {
     func displayLoading(_ isLoading: Bool)
     func bind(results: [UserListCellModel])
     func displayError(title: String, message: String)
+    func displayEmptyState(_ emtptyStateModel: EmptyStatePresentationModel)
 }
 
 protocol UserListViewOutput: AnyObject {

@@ -9,9 +9,10 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
-    private let appRouter = AppRouter()
+    private let appRouter: AppRouter
     
-    init() {
+    init(appRouter: AppRouter) {
+        self.appRouter = appRouter
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -57,7 +58,7 @@ final class MainTabBarController: UITabBarController {
                 selectedIcon: UIImage(systemName: "magnifyingglass")
             ),
             .init(
-                viewController: appRouter.createPlaceholderViewController(title: "Favorilerim"),
+                viewController: appRouter.buildUserFavoritesFeature(),
                 title: "Favorilerim",
                 icon: UIImage(systemName: "heart"),
                 selectedIcon: UIImage(systemName: "heart.fill")

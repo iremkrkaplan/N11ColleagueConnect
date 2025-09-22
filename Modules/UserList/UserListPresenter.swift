@@ -13,6 +13,7 @@ final class UserListPresenter: UserListViewOutput, UserListInteractorOutput {
     private let interactor: UserListInteractorInput
     private let router: UserListRouterInput
     private var users: [User] = []
+    private var currentSearchQuery: String = ""
     private let favoriteService: FavoriteStorageServiceProtocol
     
     init(view: UserListViewInput,
@@ -30,16 +31,23 @@ final class UserListPresenter: UserListViewOutput, UserListInteractorOutput {
         let initialData = UserListViewData(
             title: "Kullanıcı Ara",
             searchPlaceholder: "GitHub kullanıcısı ara..."
-            //TODO: Animation gif
         )
         view?.displayInitialState(with: initialData)
+        
+        view?.displayEmptyState(.searchEmptyState)
     }
     
     func searchButtonTapped(with query: String) {
-        guard !query.trimmingCharacters(in: .whitespaces).isEmpty else { return }
+        let trimmedQuery = query.trimmingCharacters(in: .whitespaces)
+        self.currentSearchQuery = trimmedQuery
+        
+        guard !trimmedQuery.isEmpty else {
+            view?.displayEmptyState(.searchEmptyState)
+            return
+        }
         
         view?.displayLoading(true)
-        interactor.searchUsers(with: query)
+        interactor.searchUsers(with: trimmedQuery)
     }
     
     func favoriteButtonTapped(for model: UserListCellModel) {
@@ -58,9 +66,13 @@ final class UserListPresenter: UserListViewOutput, UserListInteractorOutput {
         view?.displayLoading(false)
         
         if cellModels.isEmpty {
-            view?.displayError(title: "Sonuç Bulunamadı", message: "Girdiğiniz kritere uygun kullanıcı bulunamadı.")
-        }
-        else {
+            let emptyStateModel = EmptyStatePresentationModel(
+                titleViewText: "Sonuç Bulunamadı",
+                subtitleViewText: "Girdiğiniz kritere uygun kullanıcı bulunamadı.",
+                imageName: "EmptySearch"
+            )
+            view?.displayEmptyState(emptyStateModel)
+        } else {
             view?.bind(results: cellModels)
         }
     }

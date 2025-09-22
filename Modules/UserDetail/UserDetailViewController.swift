@@ -57,17 +57,13 @@ final class UserDetailViewController: BaseScrollViewController, UserDetailViewIn
           } else {
               bioLabel.isHidden = true
           }
-          
-          // 4. `statsStackView`'ı doldur.
+        
           configureStatsStackView(with: viewData.statsModel)
           
-          // 5. `memberSinceLabel`'ı doldur.
          memberSinceLabel.text = viewData.memberSinceText
           
-          // 6. `githubButton`'ı doldur ve eylemini ata.
           configureGitHubButton(with: viewData.githubButtonModel)
           
-          // 7. Favori butonunun ikonunu güncelle.
           let favoriteIconName = viewData.isFavorite ? "heart.fill" : "heart"
           favoriteButton.image = UIImage(systemName: favoriteIconName)
     }
@@ -133,7 +129,6 @@ private extension UserDetailViewController{
             profileView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: layout.topPadding),
             profileView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: layout.horizontalPadding),
             profileView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -layout.horizontalPadding),
-//            profileView.heightAnchor.constraint(equalToConstant: layout.avatarSize)
         ])
     }
     

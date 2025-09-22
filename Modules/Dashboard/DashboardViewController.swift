@@ -28,6 +28,7 @@ final class DashboardViewController: BaseScrollViewController, DashboardViewInpu
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
         setupRefreshControl()
         presenter?.viewDidLoad()
     }
@@ -59,6 +60,18 @@ final class DashboardViewController: BaseScrollViewController, DashboardViewInpu
         configureQuickActions(with: viewData.quickActionModels)
         configureSettingsAction(with: viewData.settingsButtonModel)
         configureGallery(with: viewData.galleryModel)
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.title = "Dashboard"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutTapped))
+        navigationItem.leftBarButtonItem = logoutButton
+    }
+    
+    @objc private func logoutTapped() {
+        presenter?.didTapLogoutButton()
     }
     
     func displayLoading() {

@@ -9,11 +9,28 @@ import UIKit
 final class DashboardRouter: DashboardRouterInput {
     
     weak var viewController: UIViewController?
+    weak var delegate: DashboardRouterDelegate?
     
-    static func createModule() -> UIViewController {
+    func navigateToSearch() {
+        // Kullanıcı Arama sayfasını oluştur ve push et
+        let searchVC = UserListRouter.createModule()
+        viewController?.navigationController?.pushViewController(searchVC, animated: true)
+    }
+    
+    func navigateToFavorites() {
+        // Favoriler sayfasını oluştur ve push et
+        let favoritesVC = UserFavoritesRouter.createModule()
+        viewController?.navigationController?.pushViewController(favoritesVC, animated: true)
+    }
+    
+    func logout() {
+        delegate?.logout()
+    }
+    
+    static func createModule(delegate: DashboardRouterDelegate) -> UIViewController {
         let view = DashboardViewController()
         let interactor: DashboardInteractorInput = DashboardAPIInteractor(apiClient: .live)
-        let router: DashboardRouterInput = DashboardRouter()
+        let router: DashboardRouterInput & DashboardRouter = DashboardRouter()
         
         let presenter: DashboardPresenterInput & DashboardInteractorOutput = DashboardPresenter(
             view: view,
@@ -24,6 +41,7 @@ final class DashboardRouter: DashboardRouterInput {
         view.presenter = presenter
         interactor.presenter = presenter
         router.viewController = view
+        (router as? DashboardRouter)?.delegate = delegate
         
         return view
     }
