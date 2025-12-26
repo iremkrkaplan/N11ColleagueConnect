@@ -1,4 +1,4 @@
-# N11 People Project: A Modern iOS Application Architecture Study
+# N11 Colleague Connect Project: A Modern iOS Application Architecture Study
 
 This project is a comprehensive iOS application developed to explore and implement modern software architecture and best practices. Built entirely in Swift UIKit, the application serves as a client for the GitHub API, allowing users to search, view, and manage a list of favorite users, all powered by a secure OAuth 2.0 authentication flow.
 
